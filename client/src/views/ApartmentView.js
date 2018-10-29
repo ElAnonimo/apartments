@@ -17,8 +17,7 @@ export class ApartmentView extends React.Component {
     if (!Object.keys(apartment).length) {
       return <div>Loading...</div>
     }
-    
-    let image = 'http://localhost:5000/images/apartments/' + apartment.images[0];
+    let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];
     
     return (
       <div className='container-fl clearfix'>

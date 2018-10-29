@@ -6,7 +6,7 @@ export default class ApartmentTileView extends React.Component {
   render() {
     let {apartment} = this.props;
     let url = '/apartments/' + apartment._id;
-    let image = 'http://localhost:5000/images/apartments/' + apartment.images[0];
+    let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];
 
     return (
       <div className="view-apartment-item">
