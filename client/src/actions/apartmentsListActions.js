@@ -24,11 +24,11 @@ export const fetchApartmentsList = () => dispatch => {
         }
       }
     }`
-})
-.then(apartments => dispatch({
-  type: FETCH_APARTMENTS_LIST,
-  payload: apartments.data
-}));
+  })
+    .then(apartments => dispatch({
+      type: FETCH_APARTMENTS_LIST,
+      payload: apartments.data
+    }));
 };
 
 

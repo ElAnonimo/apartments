@@ -29,9 +29,9 @@ export const fetchApartment = (_id) => dispatch => {
         services 
       }
     }`
-})
-.then(apartment => dispatch({
-  type: FETCH_APARTMENT,
-  payload: apartment.data
-}));
+  })
+    .then(apartment => dispatch({
+      type: FETCH_APARTMENT,
+      payload: apartment.data
+    }));
 };
