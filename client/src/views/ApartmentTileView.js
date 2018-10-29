@@ -11,7 +11,7 @@ export default class ApartmentTileView extends React.Component {
     return (
       <div className="view-apartment-item">
         <div className="view-apartment-item-content">
-          <a target="_blank" href={url}>
+          <a target="_blank" rel="noopener noreferrer" href={url}>
             <div className="_3im4pDXrDfzNRT2AlvLfD6">
               <div className="listing-image">
                 <div className="media-cover" style={{backgroundImage: `url(${image})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>

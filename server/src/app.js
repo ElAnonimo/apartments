@@ -13,18 +13,13 @@ const rest = require('feathers-rest');
 const services = require('./services');
 const mongodb = require('./mongodb');
 
-let rawBody = '';
-const rawBodySaver = (req, res, buf, encoding) => {
-  rawBody = buf.toString('utf8');
-};
-
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
 app.use(cors());
 app.use(helmet());
 app.use(compress());
-app.use(bodyParser.json({verify : rawBodySaver}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
