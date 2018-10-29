@@ -1,6 +1,7 @@
 import React from 'react';
-import ApartmentAmentityView from './ApartmentAmentity';
+import ApartmentAmentity from './ApartmentAmentity';
 import {IMAGE_FOLDER_URL} from '../constants/url';
+import PropTypes from 'prop-types';
 
 const ApartmentTile = ({apartment}) => {
   let url = '/apartments/' + apartment._id;
@@ -40,7 +41,7 @@ const ApartmentTile = ({apartment}) => {
                 </div>
                 <div className='f9YmKwMaSOdtYnk_Qz-iT'>
                   <div className='dVjtBg_ihJ63cZB8GwE0g text-truncate'>
-                    <ApartmentAmentityView apartment={apartment} />
+                    <ApartmentAmentity apartment={apartment} />
                   </div>
                 </div>
               </div>
@@ -50,6 +51,10 @@ const ApartmentTile = ({apartment}) => {
       </div>
     </div>
   )
+};
+
+ApartmentTile.propTypes = {
+  apartment: PropTypes.object.isRequired,
 };
 
 export default ApartmentTile;

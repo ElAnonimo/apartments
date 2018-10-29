@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchApartmentsList} from './../actions/apartmentsListActions';
-import ApartmentTileView from '../components/ApartmentTile';
+import ApartmentTile from '../components/ApartmentTile';
 import Loader from '../components/Loader';
 
 class HomeView extends React.Component {
@@ -10,9 +11,9 @@ class HomeView extends React.Component {
   }
 
   render() {
-    let {apartmentsList} = this.props;
+    let {apartmentsList, isApartmentsListLoading} = this.props;
     
-    if (!Object.keys(apartmentsList).length) {
+    if (isApartmentsListLoading) {
       return <Loader/>
     }
 
@@ -20,8 +21,8 @@ class HomeView extends React.Component {
       <div className='container-list container-lg clearfix'>
         <div className='col-12 float-left'>
           <div className='view-apartment-list'>
-            {apartmentsList.items.map((item, index) => (
-              <ApartmentTileView key={index} apartment={item}/>
+            {apartmentsList.map((item, index) => (
+              <ApartmentTile key={index} apartment={item}/>
             ))}
           </div>
         </div>
@@ -31,7 +32,18 @@ class HomeView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  apartmentsList: state.apartmentsList.apartments
+  apartmentsList: state.apartmentsList.items,
+  isApartmentsListLoading: state.apartmentsList.loading,
 });
+
+HomeView.propTypes = {
+  fetchApartmentsList: PropTypes.func.isRequired,
+  apartmentsList: PropTypes.array.isRequired,
+  isApartmentsListLoading: PropTypes.bool.isRequired
+};
+
+HomeView.defaultProps = {
+  apartmentsList: []
+};
 
 export default connect(mapStateToProps, {fetchApartmentsList})(HomeView)

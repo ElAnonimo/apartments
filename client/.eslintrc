@@ -28,6 +28,5 @@
     "plugin:react/recommended"
   ],
   "rules": {
-      "react/prop-types": 0
   }
 }

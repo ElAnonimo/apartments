@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {fetchApartment} from '../actions/apartmentActions';
 import {connect} from 'react-redux';
-import ApartmentAmentityView from '../components/ApartmentAmentity';
+import ApartmentAmentity from '../components/ApartmentAmentity';
 import Loader from '../components/Loader';
 import {IMAGE_FOLDER_URL} from '../constants/url';
 
@@ -9,13 +10,14 @@ export class ApartmentView extends React.Component {
   componentDidMount() {
     const {match: {params}} = this.props;
     const {apartmentId} = params;
+
     this.props.fetchApartment(apartmentId);
   }
 
   render() {
-    const { apartment } = this.props;
+    const { apartment, isApartmentLoading } = this.props;
 
-    if (!Object.keys(apartment).length) {
+    if (isApartmentLoading) {
       return <Loader/>
     }
 
@@ -56,7 +58,7 @@ export class ApartmentView extends React.Component {
                       </div>
                       <div className='f9YmKwMaSOdtYnk_Qz-iT'>
                         <div className='dVjtBg_ihJ63cZB8GwE0g text-truncate'>
-                          <ApartmentAmentityView apartment={apartment} limit='20'/>
+                          <ApartmentAmentity apartment={apartment} limit={20}/>
                         </div>
                       </div>
                     </div>
@@ -72,7 +74,15 @@ export class ApartmentView extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  apartment: state.apartmentItem.apartment
+  apartment: state.apartmentItem.apartment,
+  isApartmentLoading: state.apartmentItem.loading,
 });
+
+ApartmentView.propTypes = {
+  fetchApartment: PropTypes.func.isRequired,
+  apartment: PropTypes.object,
+  isApartmentLoading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, {fetchApartment})(ApartmentView)

@@ -1,8 +1,12 @@
-import {FETCH_APARTMENT} from './types';
+import {FETCH_CURRENT_APARTMENT, SET_CURRENT_APARTMENT} from './types';
 import gql from 'graphql-tag';
 import client from './../ApolloClient'
 
 export const fetchApartment = (_id) => dispatch => {
+  dispatch({
+    type: FETCH_CURRENT_APARTMENT,
+  });
+
   client.query({
     query: gql`
     {
@@ -30,8 +34,8 @@ export const fetchApartment = (_id) => dispatch => {
       }
     }`
   })
-  .then(apartment => dispatch({
-    type: FETCH_APARTMENT,
-    payload: apartment.data
+  .then(response => dispatch({
+    type: SET_CURRENT_APARTMENT,
+    apartment: response.data.apartment
   }));
 };
