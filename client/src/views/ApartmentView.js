@@ -1,7 +1,7 @@
 import React from 'react';
 import {fetchApartment} from '../actions/apartmentActions';
 import {connect} from 'react-redux';
-import ApartmentAmentityView from './ApartmentAmentityView';
+import ApartmentAmentityView from '../components/ApartmentAmentity';
 import Loader from '../components/Loader';
 import {IMAGE_FOLDER_URL} from '../constants/url';
 
