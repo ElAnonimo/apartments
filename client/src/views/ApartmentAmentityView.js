@@ -3,22 +3,17 @@ import React from 'react';
 export default class ApartmentAmentityView extends React.Component {
   render() {
     let {apartment, limit = 3} = this.props;
-    let amentities = [];
-    
-    /* apartment.amenities.map((item, index) => {
-      if (index < limit) {
-        return amentities.push(<span className="_1h9l4w0vvX6d56ZnJ3NLod" key={index}><i></i><span>{item}</span></span>);
-      } else {
-        return null;
-      }
-    }); */
 
-    apartment.amenities.forEach((item, index) => {
-      if (index < limit) {
-        amentities.push(<span className="_1h9l4w0vvX6d56ZnJ3NLod" key={index}><i></i><span>{item}</span></span>);
-      }
+    if (!apartment || !apartment.amenities || !apartment.amenities.length) {
+      return null;
+    }
+
+    return apartment.amenities.slice(0, limit).map((item) => {
+      return (
+        <span className="_1h9l4w0vvX6d56ZnJ3NLod" key={item}>
+          <i></i><span>{item}</span>
+        </span>
+      );
     });
-    
-    return amentities;
   }
 }

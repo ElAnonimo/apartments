@@ -5,8 +5,8 @@ import ApartmentAmentityView from "./ApartmentAmentityView";
 
 export class ApartmentView extends React.Component {
   componentDidMount() {
-    const { match: { params } } = this.props;
-    const { apartmentId } = params;
+    const {match: {params}} = this.props;
+    const {apartmentId} = params;
     this.props.fetchApartment(apartmentId);
   }
 
@@ -16,6 +16,7 @@ export class ApartmentView extends React.Component {
     if (!Object.keys(apartment).length) {
       return <div>Loading...</div>
     }
+
     let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];
 
     return (

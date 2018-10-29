@@ -2,7 +2,6 @@ import React from 'react';
 import ApartmentAmentityView from "./ApartmentAmentityView";
 
 export default class ApartmentTileView extends React.Component {
-
   render() {
     let {apartment} = this.props;
     let url = '/apartments/' + apartment._id;
