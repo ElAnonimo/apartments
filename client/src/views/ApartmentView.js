@@ -3,6 +3,7 @@ import {fetchApartment} from '../actions/apartmentActions';
 import {connect} from 'react-redux';
 import ApartmentAmentityView from './ApartmentAmentityView';
 import Loader from '../components/Loader';
+import {IMAGE_FOLDER_URL} from '../constants/url';
 
 export class ApartmentView extends React.Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ export class ApartmentView extends React.Component {
       return <Loader/>
     }
 
-    let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];
+    let image = IMAGE_FOLDER_URL + apartment.images[0];
 
     return (
       <div className='container-fl clearfix'>

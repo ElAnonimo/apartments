@@ -1,11 +1,12 @@
 import React from 'react';
 import ApartmentAmentityView from './ApartmentAmentityView';
+import {IMAGE_FOLDER_URL} from '../constants/url';
 
 export default class ApartmentTileView extends React.Component {
   render() {
     let {apartment} = this.props;
     let url = '/apartments/' + apartment._id;
-    let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];
+    let image = IMAGE_FOLDER_URL + apartment.images[0];
 
     return (
       <div className='view-apartment-item'>
