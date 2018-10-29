@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "spread": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+    "settings": {
+      "react": {
+        "version": "16.4"
+      },
+      "propWrapperFunctions": ["forbidExtraProps"]
+    },
+  "env": {
+    "es6":   true,
+    "browser": true,
+    "node":  true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+      "react/prop-types": 0
+  }
+}

@@ -24,7 +24,8 @@
     "test": "",
     "start": "babel-node src/",
     "postinstall": "node config/data/index.js",
-    "concur": "concurrently \"yarn run start\" \"yarn --cwd ../client run start\""
+    "concur": "concurrently \"yarn run start\" \"yarn --cwd ../client run start\"",
+    "lint": "eslint src --ext .js"
   },
   "dependencies": {
     "apollo-server-express": "^1.2.0",
@@ -55,12 +56,13 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-watch": "^2.0.7",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "concurrently": "^4.0.1",
-    "eslint": "^4.10.0",
+    "eslint": "^4.19.1",
     "feathers-memory": "^1.1.0"
   }
 }
