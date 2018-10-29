@@ -1,7 +1,6 @@
 import {FETCH_APARTMENTS_LIST} from './../actions/types';
 
 const initialState = {
-  // apartments: {}
   apartments: []
 };
 

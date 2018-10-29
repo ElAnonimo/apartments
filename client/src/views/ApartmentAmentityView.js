@@ -10,7 +10,7 @@ export default class ApartmentAmentityView extends React.Component {
 
     return apartment.amenities.slice(0, limit).map((item) => {
       return (
-        <span className="_1h9l4w0vvX6d56ZnJ3NLod" key={item}>
+        <span className='_1h9l4w0vvX6d56ZnJ3NLod' key={item}>
           <i></i><span>{item}</span>
         </span>
       );
