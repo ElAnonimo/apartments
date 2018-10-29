@@ -2,6 +2,7 @@ import React from 'react';
 import {fetchApartment} from '../actions/apartmentActions';
 import {connect} from 'react-redux';
 import ApartmentAmentityView from './ApartmentAmentityView';
+import Loader from '../components/Loader';
 
 export class ApartmentView extends React.Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ export class ApartmentView extends React.Component {
     const { apartment } = this.props;
 
     if (!Object.keys(apartment).length) {
-      return <div>Loading...</div>
+      return <Loader/>
     }
 
     let image = process.env.REACT_APP_APARTMENT_IMAGE_FOLDER_URL + apartment.images[0];

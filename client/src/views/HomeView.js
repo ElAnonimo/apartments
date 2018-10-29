@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchApartmentsList} from './../actions/apartmentsListActions';
 import ApartmentTileView from './ApartmentTileView';
+import Loader from '../components/Loader';
 
 class HomeView extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class HomeView extends React.Component {
     let {apartmentsList} = this.props;
     
     if (!Object.keys(apartmentsList).length) {
-      return <div>Loading...</div>
+      return <Loader/>
     }
 
     return (
@@ -20,7 +21,7 @@ class HomeView extends React.Component {
         <div className='col-12 float-left'>
           <div className='view-apartment-list'>
             {apartmentsList.items.map((item, index) => (
-              <ApartmentTileView key={index} apartment={item} />
+              <ApartmentTileView key={index} apartment={item}/>
             ))}
           </div>
         </div>
