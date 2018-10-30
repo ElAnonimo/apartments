@@ -1,5 +1,5 @@
-import {FETCH_APARTMENTS_LIST, SET_APARTMENTS_LIST} from "./types";
-import gql from "graphql-tag";
+import {FETCH_APARTMENTS_LIST, SET_APARTMENTS_LIST} from './types';
+import gql from 'graphql-tag';
 import client from './../ApolloClient'
 
 export const fetchApartmentsList = () => dispatch => {
