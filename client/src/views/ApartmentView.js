@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
 import {fetchApartment} from '../actions/apartmentActions';
 import {connect} from 'react-redux';
 import ApartmentAmentity from '../components/ApartmentAmentity';
@@ -19,6 +20,10 @@ export class ApartmentView extends React.Component {
 
     if (isApartmentLoading) {
       return <Loader/>
+    }
+
+    if (!apartment) {
+      return <Redirect to='/'/>
     }
 
     let image = IMAGE_FOLDER_URL + apartment.images[0];
