@@ -10,7 +10,12 @@ body {
   color: rgba(255, 255, 255, 0.75);
   background-color: #24292e;
   min-height: 60px;
-   }
+  box-sizing: border-box;
+}
+
+.header .header-link + .header-link {
+  margin-left: 20px;
+}
 
 .container-fl {
   margin-right: auto;
@@ -154,7 +159,9 @@ a {
   padding: 1px;
   border: 1px solid #d1d5da;
   border-radius: 3px;
-  margin-bottom: 16px; }
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
 
 .view-apartment-item-content {
   width: 300px;
