@@ -9,7 +9,7 @@ const rootSchema = [
     users(owner: String limit: Int skip: Int): UsersWithPagination
 
     apartment(_id: String): Apartments
-    apartments(active: Boolean owner: String location: String limit: Int skip: Int): ApartmentsWithPagination
+    apartments(active: Boolean owner: String location: String limit: Int skip: Int, filter: ApartmentsFilter): ApartmentsWithPagination
     
     location(_id: String): Locations
     locations(active: Boolean limit: Int skip: Int): LocationsWithPagination

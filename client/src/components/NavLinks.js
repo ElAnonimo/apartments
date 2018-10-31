@@ -6,6 +6,7 @@ const NavLinks = () => {
     <header className='header'>
       <div className='container-lg'>
         <Link to='/' className='header-link'>Home Page</Link>
+        <Link to='/search' className='header-link'>Search</Link>
       </div>
     </header>
   );

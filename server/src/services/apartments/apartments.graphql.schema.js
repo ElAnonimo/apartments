@@ -2,7 +2,21 @@ export default [
   `
   type ApartmentsWithPagination {
     total: Int
-    items: [Apartments]
+    items(filter: ApartmentsFilter): [Apartments]
+  }
+  
+  input ApartmentsFilter {
+    location: String
+    amenities: String
+    services: String
+    minSize: Int
+    maxSize: Int
+    minPrice: Int
+    maxPrice: Int
+    rooms: Int
+    bedrooms: Int
+    floor: Int
+    bathrooms: Int
   }
   
   type Apartments {
