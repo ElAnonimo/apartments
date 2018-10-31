@@ -26,7 +26,7 @@ export class ApartmentView extends React.Component {
       return <Redirect to='/'/>
     }
 
-    let image = IMAGE_FOLDER_URL + apartment.images[0];
+    const image = IMAGE_FOLDER_URL + apartment.images[0];
 
     return (
       <div className='container-fl clearfix'>

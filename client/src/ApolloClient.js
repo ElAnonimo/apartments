@@ -1,4 +1,4 @@
-import ApolloClient from 'apollo-boost/lib/index';
+import ApolloClient from 'apollo-boost';
 import {GRAPHQL_URL} from './constants/url';
 
 const client = new ApolloClient({

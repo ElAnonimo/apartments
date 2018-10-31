@@ -4,8 +4,8 @@ import {IMAGE_FOLDER_URL} from '../constants/url';
 import PropTypes from 'prop-types';
 
 const ApartmentTile = ({apartment}) => {
-  let url = '/apartments/' + apartment._id;
-  let image = IMAGE_FOLDER_URL + apartment.images[0];
+  const url = '/apartments/' + apartment._id;
+  const image = IMAGE_FOLDER_URL + apartment.images[0];
 
   return (
     <div className='view-apartment-item'>

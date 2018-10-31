@@ -12,7 +12,7 @@ class HomeView extends React.Component {
   }
 
   render() {
-    let {apartmentsList, isApartmentsListLoading} = this.props;
+    const {apartmentsList, isApartmentsListLoading} = this.props;
     
     if (isApartmentsListLoading) {
       return <Loader/>
