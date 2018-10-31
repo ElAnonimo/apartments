@@ -19,7 +19,7 @@ class App extends Component {
               <NavLinks/>
               <Switch>
                 <Route exact path='/' component={HomeView} />
-                <Route exact path='/search' component={ApartmentSearchView} />
+                <Route path='/search' component={ApartmentSearchView} />
                 <Route path='/apartments/:apartmentId' component={ApartmentView} />
               </Switch>
             </div>
