@@ -174,7 +174,7 @@ a {
 
 .view-apartment-item {
   display: flex;
-  width: 300px;
+  width: 33.33%;
   padding: 1px;
   border: 1px solid #d1d5da;
   border-radius: 3px;
@@ -183,7 +183,7 @@ a {
 }
 
 .view-apartment-item-content {
-  width: 300px;
+  width: 100%;
 }
 
 .container-fl .view-apartment-item {
