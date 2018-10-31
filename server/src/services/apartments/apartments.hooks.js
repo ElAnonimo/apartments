@@ -9,15 +9,19 @@ module.exports = {
         delete hook.params.query.filter;
 
         if (!hasFilter) {
-          return;
+          return hook;
         }
 
         const formatValueFilter = (field) => {
-          return filter[field] ? filter[field] : {$exists: true};
+          return filter[field]
+            ? {$regex : `.*${filter[field]}.*`, $options : 'i'}
+            : {$exists: true};
         };
 
         const formatTextArrayFilter = (field) => {
-          return filter[field] ? {$all : filter[field].split(/ +/g).filter(v => v)} : {$exists: true};
+          return filter[field]
+            ? {$all : filter[field].split(/ +/g).filter(v => v).map(v => v.toLowerCase())}
+            : {$exists: true};
         };
 
         const formatRangeFilter = (minField, maxField) => {
@@ -34,19 +38,24 @@ module.exports = {
             }
           },
           {
-            $match: {
-              'location.title': formatValueFilter('location'),
-              'amenities': formatTextArrayFilter('amenities'),
-              'services': formatTextArrayFilter('services'),
-              'price': formatRangeFilter('minPrice', 'maxPrice'),
-              'size': formatRangeFilter('minSize', 'maxSize'),
-              'detail.rooms': formatValueFilter('rooms'),
-              'detail.bedrooms': formatValueFilter('bedrooms'),
-              'detail.floor': formatValueFilter('floor'),
-              'detail.bathrooms': formatValueFilter('bathrooms')
-            }
+            $match: Object.assign(
+              {
+                'location.title': formatValueFilter('location'),
+                'amenities': formatTextArrayFilter('amenities'),
+                'services': formatTextArrayFilter('services'),
+                'price': formatRangeFilter('minPrice', 'maxPrice'),
+                'size': formatRangeFilter('minSize', 'maxSize'),
+                'detail.rooms': formatValueFilter('rooms'),
+                'detail.bedrooms': formatValueFilter('bedrooms'),
+                'detail.floor': formatValueFilter('floor'),
+                'detail.bathrooms': formatValueFilter('bathrooms')
+              },
+              hook.params.query
+            )
           }
         ]).toArray();
+
+        return hook;
       }
     ],
     get: [],

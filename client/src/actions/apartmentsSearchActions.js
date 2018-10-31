@@ -33,6 +33,7 @@ export const fetchApartmentsSearch = (filter = {}) => dispatch => {
         filter: {
           ${prepareFilter(filter)}
         }
+        active: true
       ) {
         items {
           _id
