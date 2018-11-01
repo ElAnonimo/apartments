@@ -1,5 +1,9 @@
 export const lessThan = otherField => (value, previousValue, allValues) => {
-  if (!allValues[otherField] || !value) {
+  if (!value) {
+    return '';
+  }
+
+  if (!allValues[otherField]) {
     return value;
   }
 
@@ -7,7 +11,11 @@ export const lessThan = otherField => (value, previousValue, allValues) => {
 };
 
 export const greaterThan = otherField => (value, previousValue, allValues) => {
-  if (!allValues[otherField] || !value) {
+  if (!value) {
+    return '';
+  }
+
+  if (!allValues[otherField]) {
     return value;
   }
 
@@ -16,4 +24,12 @@ export const greaterThan = otherField => (value, previousValue, allValues) => {
 
 export const textOnly = () => (value) => {
   return value.replace(/\d/g,'');
+};
+
+export const clearZeroValue = () => (value) => {
+  if (!value) {
+    return '';
+  }
+
+  return value;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {lessThan, greaterThan, textOnly} from '../helpers/formNormalization';
+import {lessThan, greaterThan, textOnly, clearZeroValue} from '../helpers/formNormalization';
 import PropTypes from 'prop-types';
 
 const ApartmentSearchForm = ({handleSubmit, onSubmit, reset, onReset, pristine, submitting}) => {
@@ -56,6 +56,7 @@ const ApartmentSearchForm = ({handleSubmit, onSubmit, reset, onReset, pristine, 
             component='input'
             type='number'
             placeholder='Rooms'
+            normalize={clearZeroValue()}
             min={0}
           />
         </div>
@@ -66,6 +67,7 @@ const ApartmentSearchForm = ({handleSubmit, onSubmit, reset, onReset, pristine, 
             component='input'
             type='number'
             placeholder='Bedrooms'
+            normalize={clearZeroValue()}
             min={0}
           />
         </div>
@@ -76,6 +78,7 @@ const ApartmentSearchForm = ({handleSubmit, onSubmit, reset, onReset, pristine, 
             component='input'
             type='number'
             placeholder='Floor'
+            normalize={clearZeroValue()}
             min={0}
           />
         </div>
@@ -86,6 +89,7 @@ const ApartmentSearchForm = ({handleSubmit, onSubmit, reset, onReset, pristine, 
             component='input'
             type='number'
             placeholder='Bathrooms'
+            normalize={clearZeroValue()}
             min={0}
           />
         </div>
