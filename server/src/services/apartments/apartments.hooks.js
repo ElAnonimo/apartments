@@ -4,7 +4,7 @@ module.exports = {
     find: [
       async function (hook) {
         const filter = Object.assign({}, hook.params.query.filter);
-        const hasFilter = filter && Object.values(filter).filter(v => v).length;
+        const hasFilter = filter && Object.values(filter).filter(Boolean).length;
 
         delete hook.params.query.filter;
 
@@ -12,16 +12,28 @@ module.exports = {
           return hook;
         }
 
-        const formatValueFilter = (field) => {
+        const formatPartialTextValueFilter = (field) => {
           return filter[field]
             ? {$regex : `.*${filter[field]}.*`, $options : 'i'}
             : {$exists: true};
         };
 
-        const formatTextArrayFilter = (field) => {
-          return filter[field]
-            ? {$all : filter[field].split(/ +/g).filter(v => v).map(v => v.toLowerCase())}
-            : {$exists: true};
+        const formatNumberValueFilter = (field) => {
+          return filter[field] || {$exists: true};
+        };
+
+        const formatPartialTextArrayFilter = (field) => {
+          if (!filter[field]) {
+            return {$exists: true};
+          }
+
+          const values = filter[field].split(/ +/g).filter(Boolean).map((value) => {
+            return new RegExp(`.*${value}.*`, 'ig')
+          });
+
+          return {
+            $all: values
+          };
         };
 
         const formatRangeFilter = (minField, maxField) => {
@@ -40,15 +52,15 @@ module.exports = {
           {
             $match: Object.assign(
               {
-                'location.title': formatValueFilter('location'),
-                'amenities': formatTextArrayFilter('amenities'),
-                'services': formatTextArrayFilter('services'),
+                'location.title': formatPartialTextValueFilter('location'),
+                'amenities': formatPartialTextArrayFilter('amenities'),
+                'services': formatPartialTextArrayFilter('services'),
                 'price': formatRangeFilter('minPrice', 'maxPrice'),
                 'size': formatRangeFilter('minSize', 'maxSize'),
-                'detail.rooms': formatValueFilter('rooms'),
-                'detail.bedrooms': formatValueFilter('bedrooms'),
-                'detail.floor': formatValueFilter('floor'),
-                'detail.bathrooms': formatValueFilter('bathrooms')
+                'detail.rooms': formatNumberValueFilter('rooms'),
+                'detail.bedrooms': formatNumberValueFilter('bedrooms'),
+                'detail.floor': formatNumberValueFilter('floor'),
+                'detail.bathrooms': formatNumberValueFilter('bathrooms')
               },
               hook.params.query
             )
